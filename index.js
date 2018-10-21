@@ -42,7 +42,7 @@ function mouseMoved(e) {
 
     pointer.angle = Math.atan2(pointer.yOffset,pointer.xOffset).toFixed(3);
 
-    // ------------------------Getting Degrees From Angle(Test 6);-------------------------------//
+    //Getting Degrees From Angle
     let degrees=Math.round(pointer.angle*180/Math.PI);
     if (degrees<0)
       degrees= degrees + 360;
@@ -52,4 +52,24 @@ function mouseMoved(e) {
 
 function updateStep(){
     step=parseInt(window.scalerange.value);
+}
+
+let player_names=['Jyn Erso','Mon Mothma','Han Solo','Galen Erso','Thane Kyrell','Norra Wexley','Ciena Ree','Malakili','R5-D4','RT-93','XX-9'];
+
+
+function init() {
+  myTime=setInterval(function (){   //Set Time Event for regular update of leader board.
+      updateLeaderBoard(player_names)
+  }, 1000);
+  document.getElementById('nick').addEventListener('input',nickChanged);
+}
+
+
+function leaders(result_length) {
+    let lists = document.getElementById("top10").getElementsByTagName('li');
+    let result = [];
+    for (let i = 0; i < ((result_length < lists.length) ? result_length : lists.length); i++) {
+        result.push(lists[i].textContent);
+    }
+    return result;
 }
