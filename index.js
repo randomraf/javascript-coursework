@@ -70,8 +70,6 @@ function leaders(result_length) {
     return result;
 }
 
-
-let playerInput=0;
 let colorIndex=0;
 function drawUserPos(){
     const x = halfWidth;
@@ -92,3 +90,25 @@ function drawPointerPos(){
     context.strokeStyle='black';
     context.stroke();
 }
+
+document.getElementById('play').addEventListener('click',function(){
+    let playername=document.getElementById('nick').value;
+    document.getElementById('playername').textContent=document.getElementById('nick').value;
+    if (playername.length>0){
+        playerNames.unshift(document.getElementById('nick').value);
+    }
+
+    document.getElementById('player').classList.toggle('hidden');
+});
+
+document.getElementById('c1').addEventListener('click',function (e) {
+    let x=e.pageX - canvas.offsetLeft;  //Check if mouse in inside userPos Circle.
+    let y=e.pageY - canvas.offsetTop;
+    colorIndex+= 1;
+    colorIndex= colorIndex % 4;
+
+    if (!document.getElementById('player').classList.contains('hidden'))
+        document.getElementById('player').classList.toggle('hidden');
+})
+
+window.addEventListener("load", init);
