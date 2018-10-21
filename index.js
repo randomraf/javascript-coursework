@@ -8,16 +8,14 @@ function updateLeaderBoard(player_names,me) {
     let ol=document.getElementById('top10');    //containing all player lists.
     ol.innerHTML='';
 
-    let i=0;
-    while (i<10 && i<player_names.length){
-        let player=document.createElement('li');
-        player.appendChild(document.createTextNode(player_names[i]));
-        if (me==player_names[i])
-            player.className="myself";
-        ol.appendChild(player);
-        i++;
+  for (let i = 0; i < 10 && i < playerNames.length; i++) {
+        let player = document.createElement("li");
+        player.appendChild(document.createTextNode(playerNames[i]));
+        if (me == playerNames[i]) //
+        player.className = "myself";
+        list.appendChild(player);
     }
-}
+  }
 
 function mouseMoved(e) {
 
