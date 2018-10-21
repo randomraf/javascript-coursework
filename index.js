@@ -53,3 +53,44 @@ function mouseMoved(e) {
 function updateStep(){
     step=parseInt(window.scalerange.value);
 }
+////#####################///
+let myTime;
+function init() {
+  myTime=setInterval(function (){
+      updateLeaderBoard(playerNames)
+  }, 1000);
+  document.getElementById('nick').addEventListener('input',nickChanged);
+}
+
+////######################////
+function leaders(result_length) {
+    let lists = document.getElementById("top10").getElementsByTagName('li');
+    let result = [];
+    for (let i = 0; i < ((result_length < lists.length) ? result_length : lists.length); i++) {
+        result.push(lists[i].textContent);
+    }
+    return result;
+}
+
+
+let playerInput=0;
+let colorIndex=0;
+function drawUserPos(){
+    const x = halfWidth;
+    const y = halfHeight;
+    context.beginPath();
+    context.arc(x, y,step, 0, 2 * Math.PI, false);
+    context.fillStyle = colours[colorIndex];
+    context.strokeStyle = colours[colorIndex]; //so that the circle is one color
+    context.fill();
+    context.stroke();
+}
+
+function drawPointerPos(){
+    const x = pointer.x;
+    const y = pointer.y;
+    context.beginPath();
+    context.arc(x, y,pointer.radius/step*50, 0, 2 * Math.PI, false);
+    context.strokeStyle='black';
+    context.stroke();
+}
